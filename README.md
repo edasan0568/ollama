@@ -1,6 +1,6 @@
-# Ollama (gemma4:e4b) - Podman Setup
+# Ollama (LLM) - Podman Setup
 
-Podmanを使ってOllamaサーバーを起動し、`gemma4:e4b` モデルを実行する構成です。
+Podmanを使ってOllamaサーバーを起動し、LLMモデルを実行する構成です。
 
 ## ファイル構成
 
@@ -75,9 +75,8 @@ curl http://localhost:11434/api/generate \
 
 ## GPU利用について
 
-GPUを利用する場合は `compose.yaml` のコメントアウトを外してください。
+GPUを利用する場合は `Makefile` の以下行のコメントアウトを外してください。
 
 ```yaml
-# devices:
-#   - nvidia.com/gpu=all
+# device nvidia.com/gpu=all \
 ```
