@@ -43,6 +43,7 @@ help: ## このヘルプを表示する
 	@echo "    make start llama3.2"
 	@echo "    make run   phi4"
 	@echo "    make pull  mistral"
+	@echo "    make rm    qwen3:14b"
 	@echo "    make start           # デフォルト: gemma4:e4b"
 	@echo ""
 
@@ -127,6 +128,11 @@ list-models: ## インストール済みモデル一覧を表示する
 run: ## コンテナ内でモデルをインタラクティブに実行する
 	@echo "==> モデル '$(MODEL)' を実行中..."
 	podman exec -it $(CONTAINER) ollama run $(MODEL)
+
+.PHONY: rm
+rm: ## コンテナ内のモデルを削除する
+	@echo "==> モデル '$(MODEL)' を削除中..."
+	podman exec $(CONTAINER) ollama rm $(MODEL)
 
 # ------------------------------------------------------------------------------
 # APIテスト
