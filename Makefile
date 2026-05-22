@@ -14,10 +14,14 @@ API_URL     := http://localhost:$(PORT)
 _ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 ifneq ($(_ARGS),)
   MODEL := $(_ARGS)
-  $(eval $(_ARGS):;@:)
 else
   MODEL ?= gemma4:e4b
 endif
+
+# 引数として渡されたモデル名（コロンを含む場合など）を
+# makeがターゲットとして解釈してエラーになるのを防ぐためのダミールール
+%:
+	@:
 
 .DEFAULT_GOAL := help
 
